@@ -73,7 +73,7 @@ First off, what are ConvNets good at? ConvNets are used primarily to look for pa
 
 <p>To understand what a CNN is, you need to understand how convolutions work. Imagine you have an image represented as a 5x5 matrix of values, and you take a 3x3 matrix and slide that 3x3 window around the image. At each position the 3x3 visits, you matrix multiply the values of your 3x3 window by the values in the image that are currently being covered by the window. This results in a single number the represents all the values in that window of the image. Here’s a pretty gif for clarity:</p>
 
-<p><img src="/blog/conv1.gif" alt="Conv gif" /></p>
+<p><img src="/blog/convcats/conv1.gif" alt="Conv gif" /></p>
 
 <p>As you can see, each item in the feature matrix corresponds to a section of the image. Note that the value of the kernel matrix is the red number in the corner of the gif.</p>
 
@@ -81,7 +81,7 @@ First off, what are ConvNets good at? ConvNets are used primarily to look for pa
 
 <p>The goal of a convolutional layer is <strong>filtering</strong>. As we move over an image we effective check for patterns in that section of the image. This works because of filters, stacks of weights represented as a vector, which are multiplied by the values outputed by the convolution.When training an image, these weights change, and so when it is time to evaluate an image, these weights return high values if it thinks it is seeing a pattern it has seen before. The combinations of high weights from various filters let the network predict the content of an image. This is why in CNN architecture diagrams, the convolution step is represented by a box, not by a rectangle; the third dimension represents the filters.</p>
 
-<p><img src="/blog/alexnet.jpeg" alt="Alexnet" /></p>
+<p><img src="/blog/convcats/alexnet.jpeg" alt="Alexnet" /></p>
 
 <h3 id="things-to-note">Things to note:</h3>
 
@@ -97,13 +97,13 @@ First off, what are ConvNets good at? ConvNets are used primarily to look for pa
 
 <p><strong>Max pooling</strong> and <strong>Average pooling</strong> are the most common pooling functions. Max pooling takes the largest value from the window of the image currently covered by the kernel, while average pooling takes the average of all values in the window.</p>
 
-<p><img src="/blog/pooling.gif" alt="pooling gif" /></p>
+<p><img src="/blog/convcats/pooling.gif" alt="pooling gif" /></p>
 
 <h2 id="activation-layers">Activation Layers</h2>
 
 <p>Activation layers work exactly as in other neural networks, a value is passed through a function that squashes the value into a range. Here’s a bunch of common ones:</p>
 
-<p><img src="/blog/activation.png" alt="activation" /></p>
+<p><img src="/blog/convcats/activation.png" alt="activation" /></p>
 
 <p>The most used activation function in CNNs is the relu (Rectified Linear Unit). There are a bunch of reason that people like relus, but a big one is because they are really cheap to perform, if the number is negative: zero, else: the number. Being cheap makes it faster to train networks.</p>
 
@@ -126,12 +126,100 @@ First off, what are ConvNets good at? ConvNets are used primarily to look for pa
 
 <p>Anyway, lets look at LeNet:</p>
 
-<p><img src="/blog/lenet.png" alt="lenet" /></p>
+<p><img src="/blog/convcats/lenet.png" alt="lenet" /></p>
 
 <p>This diagram doesn’t show the activation functions, but the architecture is:
 Input image →ConvLayer →Relu → MaxPooling →ConvLayer →Relu→ MaxPooling →Hidden Layer →Softmax (activation)→output layer</p>
 
-<p>&hellip;</p>
+<h2 id="on-to-the-cats">On to the cats!</h2>
+
+<p>Here is an image of a cat:</p>
+
+<p><img src="/blog/convcats/cat1.png" alt="cat" /></p>
+
+<p>Our picture of the cat has a height 320px, a width of 400px, and 3 channels of color (RGB).</p>
+
+<h2 id="convolutional-layer-1">Convolutional Layer</h2>
+
+<p>So what does he look like after one layer of convolution?</p>
+
+<p><img src="/blog/convcats/cat2.png" alt="cat" /></p>
+
+<p>Here is the cat with a kernel size of 3x3 and 3 filters (if we have more than 3 filter layers we cant plot a 2d image of the cat. Higher dimensional cats are notoriously tricky to deal with.).</p>
+
+<p>As you can see the cat is really noisy because all of our weights are randomly initialized and we haven’t trained the network. Oh and they’re all on top of each other so even if there was detail on each layer we wouldn’t be able to see it. But we can make out areas of the cat that were the same color like the eyes and the background. What happens if we increase the kernel size to 10x10?</p>
+
+<p><img src="/blog/convcats/cat2.png" alt="cat" /></p>
+
+<p>As we can see, we lost some of the detail because the kernel was too big. Also note the shape of the image is slightly smaller because of the larger kernel, and because math governs stuff.</p>
+
+<p>What happens if we squish it down a bit so we can see the color channels better?</p>
+
+<p><img src="/blog/convcats/cat4.png" alt="cat" /></p>
+
+<p>Much better! Now we can see some of the things our filter is seeing. It looks like red is really liking the black bits of the nose an eyes, and blue is digging the light grey that outlines the cat. We can start to see how the layer captures some of the more important details in the photo.</p>
+
+<p><img src="/blog/convcats/cat5.png" alt="cat" /></p>
+
+<p><img src="/blog/convcats/cat6.png" alt="cat" /></p>
+
+<p><img src="/blog/convcats/cat7.png" alt="cat" /></p>
+
+<p>If we increase the kernel size its far more obvious now that we get less detail, but the image is also smaller than the other two.</p>
+
+<h3 id="add-an-activation-layer">Add an Activation layer</h3>
+
+<p><img src="/blog/convcats/cat8.png" alt="cat" /></p>
+
+<p>We get rid of of a lot of the not blue-ness by adding a relu.</p>
+
+<h3 id="adding-a-pooling-layer">Adding a Pooling Layer</h3>
+
+<p>We add a pooling layer (getting rid of the activation just max it a bit easier to show)</p>
+
+<p><img src="/blog/convcats/cat9.png" alt="cat" /></p>
+
+<p>As expected, the cat is blockier, but we can go even blockyier!</p>
+
+<p><img src="/blog/convcats/cat10.png" alt="cat" /></p>
+
+<p>Notice how the image is now about a third the size of the original.</p>
+
+<h3 id="activation-and-max-pooling">Activation and Max Pooling</h3>
+
+<p><img src="/blog/convcats/cat11.png" alt="cat" /></p>
+
+<h3 id="lenet-cats">LeNet Cats</h3>
+
+<p>What do the cats look like if we put them through the convolutional and pools sections of LeNet?</p>
+
+<p><img src="/blog/convcats/cat12.png" alt="cat" /></p>
+
+<p>1 filter for each conv layer</p>
+
+<p><img src="/blog/convcats/cat13.png" alt="cat" /></p>
+
+<p>3 filters in the first conv layer, 1 in second conv layer</p>
+
+<p><img src="/blog/convcats/cat14.png" alt="cat" /></p>
+
+<p>3 filter layers in each convolution</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>ConvNets are powerful due to their ability to extract the core features of an image and use these features to identify images that contain features like them. Even with our two layer CNN we can start to see the network is paying a lot of attention to regions like the whiskers, nose, and eyes of the cat. These are the types of features that would allow the CNN to differentiate a cat from a bird for example.</p>
+
+<p>CNNs are remarkably powerful, and while these visualizations aren’t perfect, I hope they can help people like myself who are still learning to reason about ConvNets a little better.</p>
+
+<p>All code is on Github: <a href="https://github.com/erikreppel/visualizing_cnns">https://github.com/erikreppel/visualizing_cnns</a></p>
+
+<p>Follow me on Twitter, I’m <a href="https://twitter.com/programmer">@programmer</a> (yes, seriously).</p>
+
+<h3 id="further-resources">Further Resources</h3>
+
+<p><a href="https://github.com/erikreppel/visualizing_cnns">Andrej Karpathy’s cs231n</a></p>
+
+<p><a href="https://arxiv.org/pdf/1603.07285v1.pdf">A guide to convolution arithmetic for deep learning by Vincent Dumoulin and Francesco Visin</a></p>
 
   </section>
   <footer>
