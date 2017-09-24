@@ -1,4 +1,4 @@
-baseURL = "https://erikreppel.com/blog/"
+baseURL = "http://erikreppel.com/blog/"
 languageCode = "en-us"
 title = "Erik Reppel's Blog"
 theme = "hugo_theme_pickles"
