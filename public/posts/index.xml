@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Erik Reppel Blog</title>
+    <link>https://erikreppel.com/blog/posts/</link>
+    <description>Recent content in Posts on Erik Reppel Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Sep 2017 13:00:21 -0700</lastBuildDate>
+    
+	<atom:link href="https://erikreppel.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello</title>
+      <link>https://erikreppel.com/blog/posts/hello/</link>
+      <pubDate>Sun, 24 Sep 2017 13:00:21 -0700</pubDate>
+      
+      <guid>https://erikreppel.com/blog/posts/hello/</guid>
+      <description>Hello, this is a test of hugo!</description>
+    </item>
+    
+    <item>
+      <title>Visualizing parts of Convolutional Neural Networks using Keras and Cats</title>
+      <link>https://erikreppel.com/blog/posts/visualizing_convnets/</link>
+      <pubDate>Sun, 22 Jan 2017 13:05:42 -0700</pubDate>
+      
+      <guid>https://erikreppel.com/blog/posts/visualizing_convnets/</guid>
+      <description>It is well known that convolutional neural networks (CNNs or ConvNets) have been the source of many major breakthroughs in the field of Deep learning in the last few years, but they are rather unintuitive to reason about for most people. I’ve always wanted to break down the parts of a ConvNet and see what an image looks like after each stage, and in this post I do just that!</description>
+    </item>
+    
+  </channel>
+</rss>
