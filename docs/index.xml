@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Erik Reppel Blog</title>
+    <title>Erik Reppel&#39;s Blog</title>
     <link>https://erikreppel.com/blog/</link>
-    <description>Recent content on Erik Reppel Blog</description>
+    <description>Recent content on Erik Reppel&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Sep 2017 13:00:21 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jan 2017 13:05:42 -0700</lastBuildDate>
     
 	<atom:link href="https://erikreppel.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Hello</title>
-      <link>https://erikreppel.com/blog/posts/hello/</link>
-      <pubDate>Sun, 24 Sep 2017 13:00:21 -0700</pubDate>
-      
-      <guid>https://erikreppel.com/blog/posts/hello/</guid>
-      <description>Hello, this is a test of hugo!</description>
-    </item>
     
     <item>
       <title>Visualizing parts of Convolutional Neural Networks using Keras and Cats</title>
